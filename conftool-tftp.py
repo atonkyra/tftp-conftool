@@ -45,12 +45,12 @@ fd.close()
 
 class ConfigFile(StringIO.StringIO):
     def close(self):
-        logger.info("config upload finished, allow switch to think it through :)")
+        logger.info("sent config to switch")
         return StringIO.StringIO.close(self)
 
 def serve_file(name):
     if name == 'network-confg':
-        logger.info("returning network config to switch")
+        logger.info("switch requested network-confg")
         return ConfigFile(template % replace_data)
     logger.info("switch requested file: %s, returning empty file", name)
     return StringIO.StringIO()
